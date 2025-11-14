@@ -1,5 +1,6 @@
 package com.example.firstappcompose
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -29,6 +30,8 @@ import androidx.compose.ui.unit.sp
 import com.example.firstappcompose.ui.theme.FirstAppComposeTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.ContextCompat.startActivity
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,36 +41,48 @@ class MainActivity : ComponentActivity() {
             app()
         }
     }
-}
 
-@Preview(showBackground = true)
-@Composable
-fun app() {
-    var name by remember { mutableStateOf("") }
+    @Preview(showBackground = true)
+    @Composable
+    fun app() {
+        var name by remember { mutableStateOf("") }
+        var txtName by remember { mutableStateOf("") }
 
-    LazyColumn(Modifier.fillMaxSize()) {
-        item {
-            Image(painterResource(R.drawable.gatofeo), "gato muy guapo", Modifier.fillMaxWidth())
-            OutlinedTextField(
-                value = name,
-                onValueChange = { it: String -> name = it },
-                label = { "Nombre" },
-                singleLine = true
-            )
-            Text("hola mundo", Modifier.padding(12.dp))
-            Text("hola clase", fontSize = 18.sp, modifier = Modifier.padding(12.dp))
+        var context = LocalContext.current
 
-            Text(text="hola $name")
+        LazyColumn(Modifier.fillMaxSize()) {
+            item {
+                Image(painterResource(R.drawable.gatofeo), "gato muy guapo", Modifier.fillMaxWidth())
+                OutlinedTextField(
+                    value = txtName,
+                    onValueChange = { txtName = it },
+                    label = { "Nombre" },
+                    singleLine = true
+                )
+                Text("hola mundo", Modifier.padding(12.dp))
+                Text("hola clase", fontSize = 18.sp, modifier = Modifier.padding(12.dp))
 
-            Button( onClick = {}){
-                Text("mostrar")
+                Text(text="hola $name")
+
+                Button( onClick = {
+                    name = txtName
+                }){
+                    Text("mostrar")
+                }
+
+                Button( onClick = {
+                    val intent = Intent(context, CalculadoraActivity::class.java)
+                    context.startActivity(intent)
+                }){
+                    Text("ir a la calculadora")
+                }
             }
-        }
 
-        item {
-            LazyRow() {
-                item {
-                    Text("soy roooooooooooowroooooooooooowroooooooooooowroooooooooooowroooooooooooowroooooooooooowroooooooooooowroooooooooooowroooooooooooow")
+            item {
+                LazyRow() {
+                    item {
+                        Text("soy roooooooooooowroooooooooooowroooooooooooowroooooooooooowroooooooooooowroooooooooooowroooooooooooowroooooooooooowroooooooooooow")
+                    }
                 }
             }
         }
