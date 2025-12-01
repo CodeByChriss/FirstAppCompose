@@ -12,11 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirstAppCompose">
         <activity
+            android:name=".navigation.ContraseniaScreen"
+            android:exported="false"
+            android:label="@string/title_activity_contrasenia_screen"
+            android:theme="@style/Theme.FirstAppCompose" />
+        <activity
             android:name=".Main2"
             android:exported="true"
             android:label="@string/title_activity_main2"
-            android:theme="@style/Theme.FirstAppCompose">
-        </activity>
+            android:theme="@style/Theme.FirstAppCompose"></activity>
         <activity
             android:name=".CalculadoraActivity"
             android:exported="false"

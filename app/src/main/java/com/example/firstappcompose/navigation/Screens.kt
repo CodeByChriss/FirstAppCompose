@@ -3,13 +3,16 @@ package com.example.firstappcompose.navigation
 import kotlinx.serialization.Serializable
 
 @Serializable
-object Login
+data class Login(val errorMsg: String?)
+
+@Serializable
+object Contrasenia
 
 @Serializable
 object Searcher
 
 @Serializable
-object Profile
+data class Profile(val name: String)
 
 @Serializable
-object Detail
+data class Detail(val name: String)

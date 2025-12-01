@@ -2,4 +2,5 @@
     <string name="app_name">FirstAppCompose</string>
     <string name="title_activity_calculadora">CalculadoraActivity</string>
     <string name="title_activity_main2">Main2</string>
+    <string name="title_activity_contrasenia_screen">ContraseniaScreen</string>
 </resources>

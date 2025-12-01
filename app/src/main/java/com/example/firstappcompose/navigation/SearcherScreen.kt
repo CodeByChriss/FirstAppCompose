@@ -26,7 +26,7 @@ fun SearcherScreen(navigateToProfile: (String) -> Unit) {
             value = text,
             onValueChange = { text = it },
             label = { Text("Nombre de usuario") })
-        Button(onClick = { if (text.isNotBlank()) navigateToProfile(text.trim()) }) {
+        Button(onClick = { navigateToProfile(text) }) {
             Text("Buscar perfil")
         }
         Spacer(modifier = Modifier.weight(1f))
