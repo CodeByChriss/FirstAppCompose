@@ -17,7 +17,11 @@ fun LoginScreen(errorMsg: String?, navigateToSearcher: () -> Unit) {
         Spacer(modifier = Modifier.weight(1f))
         Text(text = "Login screen", fontSize = 20.sp)
         Spacer(modifier = Modifier.weight(1f))
-        Text(text = (if(errorMsg?.isNotBlank() == true) errorMsg.toString() else ""), fontSize = 18.sp, color = Color(red=255,green=0,blue=0))
+        Text(
+            text = (if (errorMsg?.isNotBlank() == true) errorMsg.toString() else ""),
+            fontSize = 18.sp,
+            color = Color(red = 255, green = 0, blue = 0)
+        )
         Spacer(modifier = Modifier.weight(1f))
         Button(onClick = navigateToSearcher) {
             Text("ir al perfil")

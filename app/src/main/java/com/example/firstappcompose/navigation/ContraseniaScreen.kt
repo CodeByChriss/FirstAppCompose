@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.example.firstappcompose.navigation.ui.theme.FirstAppComposeTheme
 
 @Composable
-fun ContraseniaScreen(navigateToLogin: (String?) -> Unit, navigateToProfile: (String) -> Unit) {
+fun ContraseniaScreen(navigateToLogin: (String?) -> Unit, navigateToSearcher: () -> Unit) {
     var name by remember { mutableStateOf("") }
     var psswd by remember { mutableStateOf("") }
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -42,7 +42,7 @@ fun ContraseniaScreen(navigateToLogin: (String?) -> Unit, navigateToProfile: (St
         Button(onClick = {
             if(name.equals("ronaldo",true)){
                 if(psswd.equals("1234",false)){
-                    navigateToProfile(name)
+                    navigateToSearcher()
                 }else{
                     navigateToLogin("Contraseña incorrecta.")
                 }

@@ -23,11 +23,15 @@ fun NavigationWrapper() {
         composable<Contrasenia> {
             ContraseniaScreen(
                 { errorMsg ->
-                    navController.navigate(Login(errorMsg))
+                    navController.navigate(Login(errorMsg)) {
+                        popUpTo(0) { // borramos toda la pila
+                            inclusive = true
+                        }
+                    }
                 },
-                { name ->
+                {
                     navController.navigate(
-                        Profile(name)
+                        Searcher
                     )
                 })
         }
