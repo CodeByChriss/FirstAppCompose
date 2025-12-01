@@ -1,31 +1,38 @@
 package com.example.firstappcompose.navigation
 
-import android.app.FragmentManager
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.toRoute
 
 @Composable
 fun NavigationWrapper() {
     val navController = rememberNavController()
+
+    var nombreDelUsuario by remember { mutableStateOf("") }
+
     NavHost(navController = navController, startDestination = Login) {
         composable<Login> {
             LoginScreen { navController.navigate(Searcher) }
         }
 
         composable<Searcher> {
-            SearcherScreen { name -> navController.navigate() }
+            SearcherScreen { userInputName ->
+                nombreDelUsuario = userInputName
+                navController.navigate(Profile)
+            }
         }
 
-        composable<Profile> { backStackEntry ->
-            val searcher:Searcher = backStackEntry.toRoute()
-            ProfileScreen { navController.navigate(Detail(name = name)) }
+        composable<Profile> {
+            ProfileScreen(nombreDelUsuario) { navController.navigate(Detail) }
         }
 
         composable<Detail> {
-            DetailScreen()
+            DetailScreen(name = nombreDelUsuario)
         }
     }
 }
