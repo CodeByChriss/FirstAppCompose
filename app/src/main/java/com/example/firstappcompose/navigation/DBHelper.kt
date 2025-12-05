@@ -5,6 +5,12 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
+data class User(
+    val id: Int,
+    val name: String,
+    val password: String
+)
+
 class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) :
     SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION) {
 
@@ -48,11 +54,25 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) :
         return count != 0
     }
 
-    fun getCountOfUsers(): Int{
-        val cursor = readableDatabase.rawQuery("SELECT * FROM $TABLE_NAME",null)
-        val count = cursor.count
+    fun getAllUsers(): ArrayList<User> {
+        val lista = ArrayList<User>()
+        val db = readableDatabase
+
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_NAME", null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
+                val name = cursor.getString(cursor.getColumnIndexOrThrow("name"))
+                val password = cursor.getString(cursor.getColumnIndexOrThrow("password"))
+
+                lista.add(User(id, name, password))
+
+            } while (cursor.moveToNext())
+        }
+
         cursor.close()
-        return count
+        return lista
     }
 
     companion object {

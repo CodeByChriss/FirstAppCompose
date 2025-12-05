@@ -12,6 +12,9 @@ object Contrasenia
 object SignUp
 
 @Serializable
+object ShowDataBase
+
+@Serializable
 data class Searcher(val name: String)
 
 @Serializable

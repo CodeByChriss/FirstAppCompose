@@ -19,11 +19,11 @@ import coil.compose.AsyncImage
 @Composable
 fun DetailScreen(name: String, navigateToLogin: () -> Unit) {
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-        Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.height(56.dp))
         Button(onClick = navigateToLogin) {
             Text("Volver al Login")
         }
-        Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.height(56.dp))
         Text(text = "DETALLES COMPLETOS", fontSize = 24.sp)
         Text(text = "Usuario: $name", fontSize = 32.sp)
         LazyColumn( modifier = Modifier.padding(top = 20.dp)) {

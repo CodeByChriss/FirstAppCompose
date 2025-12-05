@@ -16,9 +16,8 @@ fun NavigationWrapper() {
             LoginScreen(
                 login.errorMsg,
                 { navController.navigate(Contrasenia) },
-                {
-                    navController.navigate(SignUp)
-                })
+                { navController.navigate(SignUp) },
+                { navController.navigate(ShowDataBase) })
         }
 
         composable<Contrasenia> {
@@ -48,6 +47,10 @@ fun NavigationWrapper() {
                         }
                     }
                 })
+        }
+
+        composable<ShowDataBase> {
+            ShowDataBaseScreen()
         }
 
         composable<Searcher> { backStackEntry ->

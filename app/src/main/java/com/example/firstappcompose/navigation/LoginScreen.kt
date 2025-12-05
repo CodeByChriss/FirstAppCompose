@@ -12,10 +12,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun LoginScreen(errorMsg: String?, navigateToSearcher: () -> Unit, navigateToSignUp: () -> Unit) {
+fun LoginScreen(errorMsg: String?, navigateToSearcher: () -> Unit, navigateToSignUp: () -> Unit, navigateToShowDataBase: () -> Unit) {
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(modifier = Modifier.weight(1f))
-        Text(text = "Login screen", fontSize = 20.sp)
+        Text(text = "PANTALLA PRINCIPAL", fontSize = 20.sp)
         Spacer(modifier = Modifier.weight(1f))
         Text(
             text = (if (errorMsg?.isNotBlank() == true) errorMsg else ""),
@@ -29,6 +29,10 @@ fun LoginScreen(errorMsg: String?, navigateToSearcher: () -> Unit, navigateToSig
         Spacer(modifier = Modifier.weight(1f))
         Button(onClick = navigateToSignUp) {
             Text("registrarse")
+        }
+        Spacer(modifier = Modifier.weight(1f))
+        Button(onClick = navigateToShowDataBase) {
+            Text("mostrar datos")
         }
         Spacer(modifier = Modifier.weight(1f))
     }
