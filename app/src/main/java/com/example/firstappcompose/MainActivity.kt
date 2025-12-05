@@ -33,17 +33,17 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             NavigationWrapper()
-//            app()
+//            App()
         }
     }
 
     @Preview(showBackground = true)
     @Composable
-    fun app() {
+    fun App() {
         var name by remember { mutableStateOf("") }
         var txtName by remember { mutableStateOf("") }
 
-        var context = LocalContext.current
+        val context = LocalContext.current
 
         LazyColumn(Modifier.fillMaxSize()) {
             item {
@@ -74,7 +74,7 @@ class MainActivity : ComponentActivity() {
             }
 
             item {
-                LazyRow() {
+                LazyRow {
                     item {
                         Text("soy roooooooooooowroooooooooooowroooooooooooowroooooooooooowroooooooooooowroooooooooooowroooooooooooowroooooooooooowroooooooooooow")
                     }

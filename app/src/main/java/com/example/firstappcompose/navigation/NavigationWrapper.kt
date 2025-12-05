@@ -1,10 +1,6 @@
 package com.example.firstappcompose.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -17,7 +13,12 @@ fun NavigationWrapper() {
     NavHost(navController = navController, startDestination = Login(null)) {
         composable<Login> { backStackEntry ->
             val login: Login = backStackEntry.toRoute()
-            LoginScreen(login.errorMsg) { navController.navigate(Contrasenia) }
+            LoginScreen(
+                login.errorMsg,
+                { navController.navigate(Contrasenia) },
+                {
+                    navController.navigate(SignUp)
+                })
         }
 
         composable<Contrasenia> {
@@ -29,15 +30,29 @@ fun NavigationWrapper() {
                         }
                     }
                 },
-                {
-                    navController.navigate(
-                        Searcher
-                    )
+                { name ->
+                    navController.navigate(Searcher(name)) {
+                        popUpTo(0) { // borramos toda la pila
+                            inclusive = true
+                        }
+                    }
                 })
         }
 
-        composable<Searcher> {
-            SearcherScreen { name ->
+        composable<SignUp> {
+            SignUpScreen(
+                { errorMsg ->
+                    navController.navigate(Login(errorMsg)) {
+                        popUpTo(0) { // borramos toda la pila
+                            inclusive = true
+                        }
+                    }
+                })
+        }
+
+        composable<Searcher> { backStackEntry ->
+            val searcher: Searcher = backStackEntry.toRoute()
+            SearcherScreen(searcher.name) { name ->
                 navController.navigate(Profile(name))
             }
         }
@@ -49,7 +64,13 @@ fun NavigationWrapper() {
 
         composable<Detail> { backStackEntry ->
             val detail: Detail = backStackEntry.toRoute()
-            DetailScreen(detail.name) { navController.navigate(Login) }
+            DetailScreen(detail.name) {
+                navController.navigate(Login(null)) {
+                    popUpTo(0) { // borramos toda la pila
+                        inclusive = true
+                    }
+                }
+            }
         }
     }
 }

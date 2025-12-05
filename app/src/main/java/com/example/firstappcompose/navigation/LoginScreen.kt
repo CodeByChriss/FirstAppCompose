@@ -12,19 +12,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun LoginScreen(errorMsg: String?, navigateToSearcher: () -> Unit) {
+fun LoginScreen(errorMsg: String?, navigateToSearcher: () -> Unit, navigateToSignUp: () -> Unit) {
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(modifier = Modifier.weight(1f))
         Text(text = "Login screen", fontSize = 20.sp)
         Spacer(modifier = Modifier.weight(1f))
         Text(
-            text = (if (errorMsg?.isNotBlank() == true) errorMsg.toString() else ""),
+            text = (if (errorMsg?.isNotBlank() == true) errorMsg else ""),
             fontSize = 18.sp,
             color = Color(red = 255, green = 0, blue = 0)
         )
         Spacer(modifier = Modifier.weight(1f))
         Button(onClick = navigateToSearcher) {
             Text("ir al perfil")
+        }
+        Spacer(modifier = Modifier.weight(1f))
+        Button(onClick = navigateToSignUp) {
+            Text("registrarse")
         }
         Spacer(modifier = Modifier.weight(1f))
     }

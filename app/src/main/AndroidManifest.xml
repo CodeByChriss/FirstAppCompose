@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirstAppCompose">
         <activity
+            android:name=".navigation.SignUpScreen"
+            android:exported="false"
+            android:label="@string/title_activity_sign_up_screen"
+            android:theme="@style/Theme.FirstAppCompose" />
+        <activity
             android:name=".navigation.ContraseniaScreen"
             android:exported="false"
             android:label="@string/title_activity_contrasenia_screen"
@@ -20,7 +25,7 @@
             android:name=".Main2"
             android:exported="true"
             android:label="@string/title_activity_main2"
-            android:theme="@style/Theme.FirstAppCompose"></activity>
+            android:theme="@style/Theme.FirstAppCompose" />
         <activity
             android:name=".CalculadoraActivity"
             android:exported="false"

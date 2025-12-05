@@ -1,5 +1,6 @@
 package com.example.firstappcompose.navigation
 
+import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,14 +18,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ContraseniaScreen(navigateToLogin: (String?) -> Unit, navigateToSearcher: (String) -> Unit) {
+fun SignUpScreen(navigateToLogin: (String?) -> Unit) {
     var name by remember { mutableStateOf("") }
     var psswd by remember { mutableStateOf("") }
     var msg by remember { mutableStateOf("") }
     val context = LocalContext.current
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(modifier = Modifier.weight(1f))
-        Text(text = "INICIAR SESION", fontSize = 20.sp)
+        Text(text = "REGISTRARSE", fontSize = 20.sp)
         Spacer(modifier = Modifier.weight(1f))
         Text(text = msg, fontSize = 20.sp)
         Spacer(modifier = Modifier.weight(1f))
@@ -37,27 +38,23 @@ fun ContraseniaScreen(navigateToLogin: (String?) -> Unit, navigateToSearcher: (S
             onValueChange = { psswd = it },
             label = { Text("Contraseña...") })
         Button(onClick = {
-            if (name.isEmpty()) {
-                if (psswd.isEmpty()) {
+            if(name.isEmpty()){
+                if(psswd.isEmpty()){
                     msg = "Escribe un nombre de usuario y una contraseña."
-                } else {
+                }else{
                     msg = "Escribe un nombre de usuario."
                 }
-            } else {
-                if (psswd.isEmpty()) {
+            }else{
+                if(psswd.isEmpty()){
                     msg = "Escribe una contraseña."
-                } else {
-                    val db = DBHelper(context, null)
-                    val existe = db.isThereAnyone(name, psswd)
-                    if(existe){
-                        navigateToSearcher(name)
-                    }else{
-                        navigateToLogin("Nombre o contraseña incorrecta")
-                    }
+                }else{
+                    val db = DBHelper(context,null)
+                    db.addUser(name, psswd)
+                    navigateToLogin("Cuenta creada")
                 }
             }
         }) {
-            Text("Buscar perfil")
+            Text("Crear cuenta")
         }
         Spacer(modifier = Modifier.weight(1f))
     }

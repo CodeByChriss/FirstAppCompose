@@ -3,4 +3,5 @@
     <string name="title_activity_calculadora">CalculadoraActivity</string>
     <string name="title_activity_main2">Main2</string>
     <string name="title_activity_contrasenia_screen">ContraseniaScreen</string>
+    <string name="title_activity_sign_up_screen">SignUpScreen</string>
 </resources>

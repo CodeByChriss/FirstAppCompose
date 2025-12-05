@@ -9,7 +9,10 @@ data class Login(val errorMsg: String?)
 object Contrasenia
 
 @Serializable
-object Searcher
+object SignUp
+
+@Serializable
+data class Searcher(val name: String)
 
 @Serializable
 data class Profile(val name: String)
