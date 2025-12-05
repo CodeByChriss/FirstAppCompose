@@ -24,7 +24,7 @@ fun LoginScreen(errorMsg: String?, navigateToSearcher: () -> Unit, navigateToSig
         )
         Spacer(modifier = Modifier.weight(1f))
         Button(onClick = navigateToSearcher) {
-            Text("ir al perfil")
+            Text("iniciar sesion")
         }
         Spacer(modifier = Modifier.weight(1f))
         Button(onClick = navigateToSignUp) {

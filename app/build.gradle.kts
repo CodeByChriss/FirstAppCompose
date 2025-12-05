@@ -60,4 +60,7 @@ dependencies {
 
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
+
+    // carga de imagenes
+    implementation("io.coil-kt:coil-compose:2.5.0")
 }

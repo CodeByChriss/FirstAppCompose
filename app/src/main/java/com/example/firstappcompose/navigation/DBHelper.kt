@@ -42,8 +42,10 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) :
     }
 
     fun isThereAnyone(name: String, password: String): Boolean {
-        val cursor = readableDatabase.rawQuery("SELECT * FROM $TABLE_NAME WHERE $NAME_COL = '"+name+"' AND $PASSWORD_COL = '"+password+"'", null)
-        return cursor.count != 0
+        val cursor = readableDatabase.rawQuery("SELECT * FROM $TABLE_NAME WHERE $NAME_COL = '$name' AND $PASSWORD_COL = '$password'", null)
+        val count = cursor.count
+        cursor.close()
+        return count != 0
     }
 
     fun getCountOfUsers(): Int{

@@ -21,7 +21,7 @@ fun ContraseniaScreen(navigateToLogin: (String?) -> Unit, navigateToSearcher: (S
     var name by remember { mutableStateOf("") }
     var psswd by remember { mutableStateOf("") }
     var msg by remember { mutableStateOf("") }
-    val context = LocalContext.current
+    val db = DBHelper(LocalContext.current, null)
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(modifier = Modifier.weight(1f))
         Text(text = "INICIAR SESION", fontSize = 20.sp)
@@ -47,7 +47,6 @@ fun ContraseniaScreen(navigateToLogin: (String?) -> Unit, navigateToSearcher: (S
                 if (psswd.isEmpty()) {
                     msg = "Escribe una contraseña."
                 } else {
-                    val db = DBHelper(context, null)
                     val existe = db.isThereAnyone(name, psswd)
                     if(existe){
                         navigateToSearcher(name)
