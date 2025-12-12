@@ -32,7 +32,7 @@ fun LoginScreen(errorMsg: String?, navigateToSearcher: () -> Unit, navigateToSig
         }
         Spacer(modifier = Modifier.weight(1f))
         Button(onClick = navigateToShowDataBase) {
-            Text("mostrar datos")
+            Text("visualizar bbdd")
         }
         Spacer(modifier = Modifier.weight(1f))
     }
